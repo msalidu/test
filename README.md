@@ -1,3 +1,3 @@
 # test
 test per sync
-2
+2 modifica locale

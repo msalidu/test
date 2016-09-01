@@ -4,3 +4,4 @@ test per sync
 master
 pippo
 pluto
+paperino

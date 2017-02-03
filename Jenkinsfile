@@ -15,11 +15,10 @@ pipeline {
         input 'Do you approve deployment?'
         stage('Deploy') {
 
-def userInput = input(
- id: 'userInput', message: 'Let\'s promote?', parameters: [
- [$class: 'TextParameterDefinition', defaultValue: 'uat', description: 'Environment', name: 'env']
-])
-echo ("Env: "+userInput)
+            input message: 'Come ti chimi', parameters: [choice(choices: ['Massimo', 'Ruggero'], description: 'Nome', name: 'Nome')]
+            steps {
+                sh 'echo test'
+            }
         }
     }
 }

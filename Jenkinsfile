@@ -12,12 +12,13 @@ pipeline {
                
             }
         }
-        def userInput = input(
+        userInput = input(
             id: 'userInput', message: 'Let\'s promote?', parameters: [
             [$class: 'TextParameterDefinition', defaultValue: 'uat', description: 'Environment', name: 'env']
-        ])
-        echo ("Env: "+userInput)
+        ]);
+        
         stage('Deploy') {
+            echo ("Env: "+userInput);
             steps {
                 sh 'echo Deploy'
             }

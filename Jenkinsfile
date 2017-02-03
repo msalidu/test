@@ -1,23 +1,11 @@
 pipeline {
-    agent any // <1>
-    stages {
-        stage('Build') { // <2>
-            steps { // <3>
-                sh 'echo build' // <4>
-            }
-        }
-        stage('Test'){
-            steps {
-                sh 'echo test'
-               
-            }
-        }
-        input 'Do you approve deployment?'
-        stage('Deploy') {
+    agent any
 
-            input message: 'Come ti chimi', parameters: [choice(choices: ['Massimo', 'Ruggero'], description: 'Nome', name: 'Nome')]
+    stages {
+        stage('Deploy') {
+            when { currentBuild.result == 'SUCCESS' } // <1>
             steps {
-                sh 'echo test'
+                sh 'make publish'
             }
         }
     }

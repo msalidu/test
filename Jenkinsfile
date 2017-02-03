@@ -7,7 +7,7 @@ node {
         sh 'echo test'
     }
   //Not required, but sensible - this will automatically abort the build if you wait too long
-  timeout(time: 1, unit: 'WEEK') {
+  timeout(30) {
     input "Approve/deny deployment to production system"
   }
 

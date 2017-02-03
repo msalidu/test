@@ -8,11 +8,7 @@ node {
     }
 
         stage 'input'
-    def userPasswordInput = input(
-        id: 'userPasswordInput', message: 'your password', parameters: [
-            [$class: 'TextParameterDefinition', defaultValue='mb', description: 'vbn', name: 'password']
-        ]
-    )
+    def userPasswordInput = input message: 'Segli ambiente', parameters: [choice(choices: "DEV\nUAT\nPRO\n", description: 'Ambiente target', name: 'AMBIENTE')
     echo ("Password was: " + userPasswordInput)  
 
     stage('Deploy') {

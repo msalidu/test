@@ -12,8 +12,8 @@ pipeline {
                
             }
         }
+        input 'Do you approve deployment?'
         stage('Deploy') {
-            input 'Do you approve deployment?'
             steps {
                 sh 'echo Deploy'
             }

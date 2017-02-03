@@ -1,4 +1,5 @@
 pipeline {
+    agent any // <1>
     stages {
         stage('Build') { // <2>
             steps { // <3>

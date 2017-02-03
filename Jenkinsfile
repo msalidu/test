@@ -1,27 +1,23 @@
-pipeline {
-    agent any // <1>
-    stages {
-        stage('Build') { // <2>
-            steps { // <3>
-                sh 'echo build' // <4>
-            }
-        }
-        stage('Test'){
-            steps {
-                sh 'echo test'
-               
-            }
-        }
-        userInput = input(
-            id: 'userInput', message: 'Let\'s promote?', parameters: [
-            [$class: 'TextParameterDefinition', defaultValue: 'uat', description: 'Environment', name: 'env']
-        ]);
-        
-        stage('Deploy') {
-            echo ("Env: "+userInput);
-            steps {
-                sh 'echo Deploy'
-            }
-        }
+node {
+    stage('Build') {
+        sh 'echo build'
+    }
+
+    stage('Test') {
+        sh 'echo test'
+    }
+
+        stage 'input'
+    def userPasswordInput = input(
+        id: 'userPasswordInput', message: 'your password', parameters: [
+            [$class: 'TextParameterDefinition', defaultValue='mb', description: 'vbn', name: 'password']
+        ]
+    )
+    echo ("Password was: " + userPasswordInput)  
+
+    stage('Deploy') {
+        //echo("hello from Pipeline ");
+         echo "${BRANCH_NAME} ${env.BRANCH_NAME}"
+        sh 'echo Deploy ${AMBIENTE}'
     }
 }

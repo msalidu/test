@@ -1,12 +1,14 @@
-pipeline {
-    agent any
+node {
+    stage('Build') {
+        sh 'make'
+    }
 
-    stages {
-        stage('Deploy') {
-            when { currentBuild.result == 'SUCCESS' } // <1>
-            steps {
-                sh 'echo ciao'
-            }
-        }
+    stage('Test') {
+        sh 'make check'
+        junit 'reports/**/*.xml'
+    }
+
+    stage('Deploy') {
+        sh 'make publish'
     }
 }

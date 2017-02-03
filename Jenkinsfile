@@ -13,7 +13,6 @@ node {
   }
 
     stage('Deploy') {
-        echo "Deploy su  ${AMBIENTE}"
-        sh 'echo Deploy'
+        sh 'echo Deploy ${AMBIENTE}'
     }
 }

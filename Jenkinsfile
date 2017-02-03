@@ -5,7 +5,6 @@ node {
 
     stage('Test') {
         sh 'echo test'
-        junit 'reports/**/*.xml'
     }
 
     stage('Deploy') {

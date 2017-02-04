@@ -9,6 +9,8 @@ node {
     
     stage('Read props') {
        def props = readProperties file: 'test.properties'
+       def version = props.version
+       echo ("Versione sul file:" + version);
     }
 
     stage('Deploy') {

@@ -8,7 +8,8 @@ node {
     }
 
 stage('input') {
-def AMBIENTE =  input ( message: 'Segli ambiente', parameters: [choice(choices: "DEV\nUAT\nPRO\n", description: 'Ambiente target', name: 'AMBIENTE')] );    //echo ("AMBIENTE selezionato: " + AMBIENTE)  
+    def AMBIENTE =  input ( message: 'Segli ambiente', parameters: [choice(choices: "DEV\nUAT\nPRO\n", description: 'Ambiente target', name: 'AMBIENTE')] );    //echo ("AMBIENTE selezionato: " + AMBIENTE)  
+    echo("Ambiente Selezionato: "+AMBIENTE);
 }
     stage('Deploy') {
         //echo("hello from Pipeline ");

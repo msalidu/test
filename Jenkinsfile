@@ -6,10 +6,10 @@ node {
     stage('Test') {
         sh 'echo test'
     }
-  //Not required, but sensible - this will automatically abort the build if you wait too long
-  timeout(30) {
-    input "Approve/deny deployment to production system"
-  }
+    
+    stage('Read props') {
+       def props = readProperties file: 'test.properties'
+    }
 
     stage('Deploy') {
         sh 'echo Deploy'

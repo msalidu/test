@@ -29,6 +29,7 @@ node {
         echo  "${BRANCH_NAME} ${env.BRANCH_NAME}"
         echo("Deploy: "+ AMBIENTE + " - "+ VERSION + " - " + BRANCH_NAME);
         sh 'echo Deploy ${AMBIENTE} - ${VERSION} '
+        bash "echo  ${AMBIENTE} - ${VERSION} - ${BRANCH_NAME}"
     }   
     
 }

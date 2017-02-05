@@ -18,6 +18,6 @@ node {
     }
 
     stage('Deploy') {
-        sh 'echo Deploy'
+        sh 'echo Deploy ${version} -'
     }
 }

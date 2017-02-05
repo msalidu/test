@@ -12,12 +12,12 @@ node {
     }
     
     def VERSION = "";
-    def verNexDev = "" ;
+    def verNexDev = "0.0.0" ;
     stage('Read props') {
        def props = readProperties file: 'test.properties'
        VERSION = props.version
-       def (ZZ, XX, YY) = VERSION.tokenize( '.' );
-       verNexDev = ZZ+"."+XX+"."+(YY.toInteger()+1)+"-SNAPSHOT"
+       //def (ZZ, XX, YY) = VERSION.tokenize( '.' );
+       //verNexDev = ZZ+"."+XX+"."+(YY.toInteger()+1)+"-SNAPSHOT"
        echo ("Versione sul file:" + VERSION);
     }
     

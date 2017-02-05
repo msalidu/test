@@ -1,4 +1,8 @@
 node {
+    stage('checkout') {
+       checkout scm
+    }
+    
     stage('Build') {
         sh 'echo build'
     }

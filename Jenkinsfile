@@ -11,12 +11,14 @@ node {
         sh 'echo test'
     }
     
+    def VERSION = "";
     stage('Read props') {
        def props = readProperties file: 'test.properties'
-       def VERSION = props.version
+       VERSION = props.version
        echo ("Versione sul file:" + VERSION);
     }
- def AMBIENTE ="";
+    
+    def AMBIENTE = "";
     stage('input') {
         AMBIENTE =  input ( message: 'Segli ambiente', parameters: [choice(choices: "DEV\nUAT\nPRO\n", description: 'Ambiente target', name: 'AMBIENTE')] );    //echo ("AMBIENTE selezionato: " + AMBIENTE)  
         echo("Ambiente Selezionato: "+ AMBIENTE);

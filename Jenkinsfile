@@ -28,8 +28,7 @@ node {
         //echo("hello from Pipeline ");
         echo  "${BRANCH_NAME} ${env.BRANCH_NAME}"
         echo("Deploy: "+ AMBIENTE + " - "+ VERSION + " - " + BRANCH_NAME);
-        sh 'echo Deploy ${AMBIENTE} - ${VERSION} '
-        sh "echo  ${AMBIENTE} - ${VERSION} - ${BRANCH_NAME}"
+        sh "echo DEPLOY ${AMBIENTE} - ${VERSION} - ${BRANCH_NAME}"
     }   
     
 }

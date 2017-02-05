@@ -16,9 +16,9 @@ node {
        def VERSION = props.version
        echo ("Versione sul file:" + VERSION);
     }
-
+ def AMBIENTE ="";
     stage('input') {
-        def AMBIENTE =  input ( message: 'Segli ambiente', parameters: [choice(choices: "DEV\nUAT\nPRO\n", description: 'Ambiente target', name: 'AMBIENTE')] );    //echo ("AMBIENTE selezionato: " + AMBIENTE)  
+        AMBIENTE =  input ( message: 'Segli ambiente', parameters: [choice(choices: "DEV\nUAT\nPRO\n", description: 'Ambiente target', name: 'AMBIENTE')] );    //echo ("AMBIENTE selezionato: " + AMBIENTE)  
         echo("Ambiente Selezionato: "+ AMBIENTE);
     }
     

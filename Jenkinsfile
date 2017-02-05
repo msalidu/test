@@ -22,7 +22,7 @@ node {
     def NEXT_REL = "";
     stage('input') {
         AMBIENTE =  input ( message: 'Segli ambiente', parameters: [choice(choices: "DEV\nUAT\nPRO\n", description: 'Ambiente target', name: 'AMBIENTE')] );    //echo ("AMBIENTE selezionato: " + AMBIENTE)  
-        NEXT_REL =  input ( message: 'Next rel', parameters: [string(defaultValue: '1.0.0', description: 'versione', name: 'NEXT_REL')] ); 
+        NEXT_REL =  input ( message: 'Next rel', parameters: [string(defaultValue: VERSION, description: 'versione', name: 'NEXT_REL')] ); 
         echo("Ambiente Selezionato: "+ AMBIENTE);
     }
     

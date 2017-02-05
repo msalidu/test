@@ -12,9 +12,12 @@ node {
     }
     
     def VERSION = "";
+    def verNexDev = "" ;
     stage('Read props') {
        def props = readProperties file: 'test.properties'
        VERSION = props.version
+       def (ZZ, XX, YY) = VERSION.tokenize( '.' );
+       verNexDev = ZZ+"."+XX+"."+(YY.toInteger()+1)+"-SNAPSHOT"
        echo ("Versione sul file:" + VERSION);
     }
     
@@ -22,7 +25,7 @@ node {
     def NEXT_REL = "";
     stage('input') {
         AMBIENTE =  input ( message: 'Segli ambiente', parameters: [choice(choices: "DEV\nUAT\nPRO\n", description: 'Ambiente target', name: 'AMBIENTE')] );    //echo ("AMBIENTE selezionato: " + AMBIENTE)  
-        NEXT_REL =  input ( message: 'Next rel', parameters: [string(defaultValue: VERSION, description: 'versione', name: 'NEXT_REL')] ); 
+        NEXT_REL =  input ( message: 'Next rel', parameters: [string(defaultValue: verNexDev, description: 'Next versione', name: 'NEXT_REL')] ); 
         echo("Ambiente Selezionato: "+ AMBIENTE);
     }
     

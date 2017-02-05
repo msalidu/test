@@ -19,15 +19,17 @@ node {
     }
     
     def AMBIENTE = "";
+    def NEXT_REL = "";
     stage('input') {
         AMBIENTE =  input ( message: 'Segli ambiente', parameters: [choice(choices: "DEV\nUAT\nPRO\n", description: 'Ambiente target', name: 'AMBIENTE')] );    //echo ("AMBIENTE selezionato: " + AMBIENTE)  
+        NEXT_REL =  input ( message: 'Next rel', parameters: [string(defaultValue: '1.0.0', description: 'versione', name: 'NEXT_REL')] ); 
         echo("Ambiente Selezionato: "+ AMBIENTE);
     }
     
     stage('Deploy') {
         //echo("hello from Pipeline ");
         echo  "${BRANCH_NAME} ${env.BRANCH_NAME}"
-        echo("Deploy: "+ AMBIENTE + " - "+ VERSION + " - " + BRANCH_NAME);
+        echo("Deploy: "+ AMBIENTE + " - "+ VERSION + " - " + BRANCH_NAME + " -- " + NEXT_REL);
         sh "echo DEPLOY ${AMBIENTE} - ${VERSION} - ${BRANCH_NAME}"
     }   
     

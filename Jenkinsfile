@@ -12,7 +12,8 @@ node {
         sh 'echo build'
     }
 
-    stage('Test') {
+    stage('Test if baranch feature') {
+        when { branch "feature/*" }
         sh 'echo test'
     }
     

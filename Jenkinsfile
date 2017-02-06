@@ -20,7 +20,7 @@ node {
        //verNexDev = ZZ+"."+XX+"."+(YY.toInteger()+1)+"-SNAPSHOT"
        echo ("Versione sul file:" + VERSION);
     }
-    
+   
     def AMBIENTE = "";
     def NEXT_REL = "";
     stage('input') {
@@ -29,11 +29,21 @@ node {
         echo("Ambiente Selezionato: "+ AMBIENTE);
     }
     
+    def userInput;
+    stage('User input') {  
+        userInput = input message: 'Seleziona i valori', 
+                          parameters: [string(defaultValue: 'UAT', description: 'ambiente target', name: 'AMBIENTE'), 
+                                       string(defaultValue: verNexDev, description: 'versione da rilasciare', name: 'VERSIONE')]
+        echo("Ambiente Selezionato: "+ userInput['AMBIENTE'] + " -- rel: " + userInput['VERSIONE']);
+    }   
+    
+    
     stage('Deploy') {
+        def AMB = userInput['AMBIENTE'];
         //echo("hello from Pipeline ");
         echo  "${BRANCH_NAME} ${env.BRANCH_NAME}"
         echo("Deploy: "+ AMBIENTE + " - "+ VERSION + " - " + BRANCH_NAME + " -- " + NEXT_REL);
-        sh "echo DEPLOY ${AMBIENTE} - ${VERSION} - ${BRANCH_NAME}"
+        sh "echo DEPLOY ${AMBIENTE} - ${VERSION} - ${BRANCH_NAME} -- ${AMB} "
     }   
     
 }

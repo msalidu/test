@@ -35,9 +35,9 @@ node {
         echo  "${BRANCH_NAME} ${env.BRANCH_NAME}"
         echo("Deploy: "+ DEPLOY + "- " + BRANCH_NAME + " -- " + NEXT_REL + " -- " + REL);
         
-        dir ('WorkSpace dir') { 
-            sh "./test.sh "
-        }
+
+        sh "pwd;ls -la; ./test.sh "
+
        
         //sh "echo DEPLOY ${DEPLOY} - ${REL} - ${BRANCH_NAME} "
     }   

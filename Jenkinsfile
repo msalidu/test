@@ -16,21 +16,10 @@ node {
     stage('Read props') {
        def props = readProperties file: 'test.properties'
        VERSION = props.version
-       verNexDev2 = VERSION.split('\\.')[0] + "."+ (VERSION.split('\\.')[1].toInteger()+1)+ "."+VERSION.split('\\.')[2];
-       //def (ZZ, XX, YY) = VERSION.spilt( '\\.' );
-       //verNexDev = ZZ+"."+XX+"."+(YY.toInteger()+1)+"-SNAPSHOT";
-       echo ("Versione sul file:" + VERSION + "--- " + verNexDev2);
+       verNexDev = VERSION.split('\\.')[0] + "."+VERSION.split('\\.')[1] + "."+ (VERSION.split('\\.')[2].toInteger()+1);
+       //echo ("Versione sul file:" + VERSION + "--- " + verNexDev);
     }
-   /*
-    def AMBIENTE = "";
-    def NEXT_REL = "";
-    stage('input') {
-        AMBIENTE =  input ( message: 'Segli ambiente', parameters: [choice(choices: "DEV\nUAT\nPRO\n", description: 'Ambiente target', name: 'AMBIENTE')] );    //echo ("AMBIENTE selezionato: " + AMBIENTE)  
-        NEXT_REL =  input ( message: 'Next rel', parameters: [string(defaultValue: verNexDev, description: 'Next versione', name: 'NEXT_REL')] ); 
-        echo("Ambiente Selezionato: "+ AMBIENTE);
-    }
-    */
-    
+
     def userInput;
     stage('User input') {  
         userInput = input message: 'Seleziona i valori', 

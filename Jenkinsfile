@@ -36,7 +36,7 @@ node {
         echo("Deploy: "+ DEPLOY + "- " + BRANCH_NAME + " -- " + NEXT_REL + " -- " + REL);
         
 
-        sh "bash ./test.sh "
+        sh "export DEPLOY=${DEPLOY};bash ./test.sh "
 
        
         //sh "echo DEPLOY ${DEPLOY} - ${REL} - ${BRANCH_NAME} "

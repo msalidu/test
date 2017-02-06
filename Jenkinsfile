@@ -13,13 +13,13 @@ node {
     
     def versionRelease = "" ;
     def versionDevelop = "0.0.0-SNAPSHOT" ;
-    stage('Read props') {
+   // stage('Read props') {  }
        def props = readProperties file: 'test.properties'
        def VERSION = props.version
        versionDevelop = VERSION.split('\\.')[0] + "."+VERSION.split('\\.')[1] + "."+ (VERSION.split('\\.')[2].toInteger()+1)+"-SNAPSHOT";
        versionRelease = VERSION.replace("-SNAPSHOT", "")
        //echo ("Versione sul file:" + VERSION + "--- " + versionDevelop);
-    }
+   
 
     def DEPLOY="", REL="", NEXT_REL=""
     stage('User input') {  

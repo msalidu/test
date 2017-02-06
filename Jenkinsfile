@@ -34,7 +34,11 @@ node {
         //echo("hello from Pipeline ");
         echo  "${BRANCH_NAME} ${env.BRANCH_NAME}"
         echo("Deploy: "+ DEPLOY + "- " + BRANCH_NAME + " -- " + NEXT_REL + " -- " + REL);
-        sh "test.sh "
+        
+        dir ('WorkSpace dir') { 
+            sh "./test.sh "
+        }
+       
         //sh "echo DEPLOY ${DEPLOY} - ${REL} - ${BRANCH_NAME} "
     }   
     

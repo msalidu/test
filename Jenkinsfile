@@ -36,8 +36,8 @@ node {
     stage('Deploy') {
         //echo("hello from Pipeline ");
         echo  "${BRANCH_NAME} ${env.BRANCH_NAME}"
-        echo("Deploy: "+ DEPLOY + " - "+ VERSION + " - " + BRANCH_NAME + " -- " + NEXT_REL + " -- " + REL);
-        sh "echo DEPLOY ${DEPLOY} - ${VERSION} - ${BRANCH_NAME} "
+        echo("Deploy: "+ DEPLOY + "- " + BRANCH_NAME + " -- " + NEXT_REL + " -- " + REL);
+        sh "echo DEPLOY ${DEPLOY} - ${REL} - ${BRANCH_NAME} "
     }   
     
 }

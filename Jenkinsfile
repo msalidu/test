@@ -19,7 +19,7 @@ node {
        def relVer = VERSION.split( '.' )
        //def (ZZ, XX, YY) = VERSION.tokenize( '.' );
        //verNexDev = ZZ+"."+XX+"."+(YY.toInteger()+1)+"-SNAPSHOT"
-       echo ("Versione sul file:" + VERSION + "--- " + relVer[0]);
+       echo ("Versione sul file:" + VERSION + "--- " + relVer);
     }
    /*
     def AMBIENTE = "";

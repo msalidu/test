@@ -16,7 +16,7 @@ node {
     stage('Read props') {
        def props = readProperties file: 'test.properties'
        VERSION = props.version
-       //def (ZZ, XX, YY) = VERSION.tokenize( '.' );
+       def (ZZ, XX, YY) = VERSION.tokenize( '.' );
        //verNexDev = ZZ+"."+XX+"."+(YY.toInteger()+1)+"-SNAPSHOT"
        echo ("Versione sul file:" + VERSION);
     }

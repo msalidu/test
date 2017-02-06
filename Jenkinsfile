@@ -36,7 +36,7 @@ node {
         echo("Deploy: "+ DEPLOY + "- " + BRANCH_NAME + " -- " + NEXT_REL + " -- " + REL);
         
 
-        sh "pwd;ls -la; ./test.sh "
+        sh "bash ./test.sh "
 
        
         //sh "echo DEPLOY ${DEPLOY} - ${REL} - ${BRANCH_NAME} "

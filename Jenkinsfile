@@ -1,8 +1,7 @@
 node {
+    //aggiorno il repo
+    checkout scm
     
-    stage('checkout') {
-       checkout scm
-    }
     // Variabili globali
     def props = readProperties file: 'test.properties'
     def VERSION = props.version

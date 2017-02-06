@@ -6,7 +6,7 @@ node {
     stage('Test') {
         sh 'echo test'
     }
-    
+/*    
     def userInput;
     stage('input') {
         userInput =  input ( message: 'Release and deploy', 
@@ -15,7 +15,10 @@ node {
          );   
         echo("Ambiente Selezionato: "+ userInput['AMBIENTE'] + " -- rel: " + userInput['AMBIENTE']);
     }
-    
+*/
+    stage('input2') {  
+        input message: 'Seleziona i valori', parameters: [string(defaultValue: 'UAT', description: 'ambiente target', name: 'AMBIENTE'), string(defaultValue: '0.0.0', description: 'versione da rilasciare', name: 'VERSIONE')]
+    } 
     
     stage('Deploy') {
         //echo("hello from Pipeline ");

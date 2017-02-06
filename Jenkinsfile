@@ -19,6 +19,7 @@ node {
     def userInput;
     stage('input2') {  
         userInput = input message: 'Seleziona i valori', parameters: [string(defaultValue: 'UAT', description: 'ambiente target', name: 'AMBIENTE'), string(defaultValue: '0.0.0', description: 'versione da rilasciare', name: 'VERSIONE')]
+        echo("Ambiente Selezionato: "+ userInput['AMBIENTE'] + " -- rel: " + userInput['VERSIONE']);
     } 
     
     stage('Deploy') {

@@ -11,7 +11,6 @@ node {
         sh 'echo test'
     }
     
-
     def versionRelease = "" ;
     def versionDevelop = "0.0.0-SNAPSHOT" ;
     stage('Read props') {
@@ -22,15 +21,12 @@ node {
        //echo ("Versione sul file:" + VERSION + "--- " + versionDevelop);
     }
 
-
     def DEPLOY="", REL="", NEXT_REL=""
     stage('User input') {  
-        deg userInput = input message: 'Seleziona i valori', 
+        def userInput = input message: 'Seleziona i valori', 
                               parameters: [choice(choices: "NO\nUAT\n", description: 'Deploy', name: 'DEP'), 
                                            string(defaultValue: versionRelease, description: 'Release Version', name: 'VER'),
-                                           string(defaultValue: versionDevelop, description: 'Development Version', name: 'DEV')]
-        //echo("Ambiente Selezionato: "+ userInput['DEPLOY'] + " -- rel: " + userInput['VERSIONE']);
-        
+                                           string(defaultValue: versionDevelop, description: 'Development Version', name: 'DEV')]        
         DEPLOY = userInput['DEP'];
         REL = userInput['VER'];
         NEXT_REL = userInput['DEV'];

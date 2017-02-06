@@ -16,8 +16,8 @@ node {
     stage('Read props') {
        def props = readProperties file: 'test.properties'
        VERSION = props.version
-       verNexDev2 = VERSION.split('\\.');
-       def (ZZ, XX, YY) = VERSION.spilt( '\\.' );
+       verNexDev2 = VERSION.split('\\.')[0] + "."+ (VERSION.split('\\.')[1].toInteger()+1)+ "."+VERSION.split('\\.')[2];
+       //def (ZZ, XX, YY) = VERSION.spilt( '\\.' );
        //verNexDev = ZZ+"."+XX+"."+(YY.toInteger()+1)+"-SNAPSHOT";
        echo ("Versione sul file:" + VERSION + "--- " + verNexDev2);
     }

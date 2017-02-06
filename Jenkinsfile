@@ -11,32 +11,37 @@ node {
         sh 'echo test'
     }
     
-    def VERSION = "";
-    def verNexDev = "0.0.0" ;
+
+    def versionRelease = "" ;
+    def versionDevelop = "0.0.0-SNAPSHOT" ;
     stage('Read props') {
        def props = readProperties file: 'test.properties'
-       VERSION = props.version
-       verNexDev = VERSION.split('\\.')[0] + "."+VERSION.split('\\.')[1] + "."+ (VERSION.split('\\.')[2].toInteger()+1);
-       //echo ("Versione sul file:" + VERSION + "--- " + verNexDev);
+       def VERSION = props.version
+       versionDevelop = VERSION.split('\\.')[0] + "."+VERSION.split('\\.')[1] + "."+ (VERSION.split('\\.')[2].toInteger()+1)+"-SNAPSHOT";
+       versionRelease = VERSION.replace("-SNAPSHOT", "")
+       //echo ("Versione sul file:" + VERSION + "--- " + versionDevelop);
     }
 
-    def userInput;
+
+    def DEPLOY="", REL="", NEXT_REL=""
     stage('User input') {  
-        userInput = input message: 'Seleziona i valori', 
-                          parameters: [choice(choices: "DEV\nUAT\nPRO\n", description: 'Ambiente target', name: 'AMBIENTE'), 
-                                       string(defaultValue: verNexDev, description: 'versione da rilasciare', name: 'VERSIONE')]
-        //echo("Ambiente Selezionato: "+ userInput['AMBIENTE'] + " -- rel: " + userInput['VERSIONE']);
+        deg userInput = input message: 'Seleziona i valori', 
+                              parameters: [choice(choices: "NO\nUAT\n", description: 'Deploy', name: 'DEP'), 
+                                           string(defaultValue: versionRelease, description: 'Release Version', name: 'VER'),
+                                           string(defaultValue: versionDevelop, description: 'Development Version', name: 'DEV')]
+        //echo("Ambiente Selezionato: "+ userInput['DEPLOY'] + " -- rel: " + userInput['VERSIONE']);
         
-        AMBIENTE = userInput['AMBIENTE'];
-        NEXT_REL = userInput['VERSIONE'];
+        DEPLOY = userInput['DEP'];
+        REL = userInput['VER'];
+        NEXT_REL = userInput['DEV'];
     }   
     
     
     stage('Deploy') {
         //echo("hello from Pipeline ");
         echo  "${BRANCH_NAME} ${env.BRANCH_NAME}"
-        echo("Deploy: "+ AMBIENTE + " - "+ VERSION + " - " + BRANCH_NAME + " -- " + NEXT_REL);
-        sh "echo DEPLOY ${AMBIENTE} - ${VERSION} - ${BRANCH_NAME} "
+        echo("Deploy: "+ DEPLOY + " - "+ VERSION + " - " + BRANCH_NAME + " -- " + NEXT_REL + " -- " + REL);
+        sh "echo DEPLOY ${DEPLOY} - ${VERSION} - ${BRANCH_NAME} "
     }   
     
 }

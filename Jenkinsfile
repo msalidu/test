@@ -33,7 +33,7 @@ node {
     def userInput;
     stage('User input') {  
         userInput = input message: 'Seleziona i valori', 
-                          parameters: [string(defaultValue: 'UAT', description: 'ambiente target', name: 'AMBIENTE'), 
+                          parameters: [choice(choices: "DEV\nUAT\nPRO\n", description: 'Ambiente target', name: 'AMBIENTE'), 
                                        string(defaultValue: verNexDev, description: 'versione da rilasciare', name: 'VERSIONE')]
         //echo("Ambiente Selezionato: "+ userInput['AMBIENTE'] + " -- rel: " + userInput['VERSIONE']);
         
@@ -46,7 +46,7 @@ node {
         //echo("hello from Pipeline ");
         echo  "${BRANCH_NAME} ${env.BRANCH_NAME}"
         echo("Deploy: "+ AMBIENTE + " - "+ VERSION + " - " + BRANCH_NAME + " -- " + NEXT_REL);
-        sh "echo DEPLOY ${AMBIENTE} - ${VERSION} - ${BRANCH_NAME} -- ${AMB} "
+        sh "echo DEPLOY ${AMBIENTE} - ${VERSION} - ${BRANCH_NAME} "
     }   
     
 }

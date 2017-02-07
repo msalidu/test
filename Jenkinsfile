@@ -26,7 +26,6 @@ node {
             sh 'printenv'
         }
     }
-    
 
     def DEPLOY="", REL="", NEXT_REL=""
     stage('User input') {  

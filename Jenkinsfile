@@ -8,24 +8,28 @@ node {
     def versionDevelop = VERSION.split('\\.')[0] + "."+VERSION.split('\\.')[1] + "."+ (VERSION.split('\\.')[2].toInteger()+1)+"-SNAPSHOT";
     def versionRelease = VERSION.replace("-SNAPSHOT", "")
    
-    stage('Build') {
+    
 
-        if (env.BRANCH_NAME == "feat2") {                                          
-            echo  "YES ${BRANCH_NAME} ${env.BRANCH_NAME}" 
+        if (env.BRANCH_NAME == "feat2") {    
+            stage('Build feat2') {
+                echo  "YES ${BRANCH_NAME} ${env.BRANCH_NAME}" 
+             }
         } else {                                   
-            echo  "NO ${BRANCH_NAME} ${env.BRANCH_NAME}"
+            stage('Build not feat2') {
+                echo  "YES ${BRANCH_NAME} ${env.BRANCH_NAME}" 
+             }
         }  
-        sh 'echo build'
-    }
+
     
     //when { branch "feature/*" }
-    
+    /*
     withEnv(['BRANCH_NAME=feat2']) 
     {
         stage('zzz stage if') {
             sh 'printenv'
         }
     }
+*/
 
     def DEPLOY="", REL="", NEXT_REL=""
     stage('User input') {  

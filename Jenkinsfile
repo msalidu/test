@@ -9,9 +9,10 @@ pipeline {
         }
          stage('User input') {     
             steps {  
-                def DEPLOY="", REL="", NEXT_REL=""
-                def versionRelease= "1.0.0"
-                def versionDevelop= "1.0.1-SNAPSHOT"
+                script {
+                    def DEPLOY="", REL="", NEXT_REL=""
+                    def versionRelease= "1.0.0"
+                    def versionDevelop= "1.0.1-SNAPSHOT"
  
 
                     def userInput = input message: 'Seleziona i valori', 
@@ -22,6 +23,8 @@ pipeline {
                     REL = userInput['VER'];
                     NEXT_REL = userInput['DEV'];
 
+                }
+                
             }
         }
     }

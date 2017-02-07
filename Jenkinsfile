@@ -12,12 +12,12 @@ node {
      withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: '2365f259-442a-4253-9fb0-26dd5a2edb3d',
                             usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD']]) {
                 //available as an env variable, but will be masked if you try to print it out any which way
-                sh 'env'
+                sh '/tmp/printinput.sh ${env.USERNAME} ${env.PASSWORD}'
                 echo "user ${env.USERNAME}"
             }
     stage('Build') {
         echo  "Bulding.... ${BRANCH_NAME} -  ${env.USERNAME} " 
-        sh '/tmp/printinput.sh ${env.USERNAME} ${env.PASSWORD}'
+       
     } 
     
     if ( env.BRANCH_NAME.contains("release") ) {    

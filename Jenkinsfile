@@ -10,16 +10,11 @@ node {
    
     
 
-        if (env.BRANCH_NAME == "feat2") {    
-            stage('Build feat2') {
-                echo  "YES ${BRANCH_NAME} ${env.BRANCH_NAME}" 
-             }
-        } else {                                   
-            stage('Build not feat2') {
-                echo  "YES ${BRANCH_NAME} ${env.BRANCH_NAME}" 
-             }
-        }  
-
+    if (env.BRANCH_NAME.contains("feat) {    
+        stage('Build on feat* ') {
+            echo  "YES ${BRANCH_NAME} ${env.BRANCH_NAME}" 
+         }
+    } 
     
     //when { branch "feature/*" }
     /*

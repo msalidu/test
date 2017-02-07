@@ -10,7 +10,7 @@ node {
     def DEPLOY="", REL="", NEXT_REL=""
  
     stage('Build') {
-        echo("Bulding.... "+ BUILD_CAUSE );
+        echo  "Bulding.... ${BRANCH_NAME} ${BUILD_CAUSE}" 
     } 
     
     if ( env.BRANCH_NAME.contains("release") ) {    

@@ -26,6 +26,9 @@ pipeline {
                 }
                 
             }
+            steps {
+                sh 'ls -la'
+            }
         }
     }
     post { /* <1> */

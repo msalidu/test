@@ -10,7 +10,7 @@ node {
    
     stage('Build') {
 
-        if (env.BRANCH_NAME == "feat1") {                                          
+        if (env.BRANCH_NAME == "feat2") {                                          
             echo  "YES ${BRANCH_NAME} ${env.BRANCH_NAME}" 
         } else {                                   
             echo  "NO ${BRANCH_NAME} ${env.BRANCH_NAME}"
@@ -20,7 +20,7 @@ node {
     
     //when { branch "feature/*" }
     
-    withEnv(['BRANCH_NAME=feat1']) 
+    withEnv(['BRANCH_NAME=feat2']) 
     {
         stage('zzz stage if') {
             sh 'printenv'

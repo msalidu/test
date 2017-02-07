@@ -12,7 +12,15 @@ node {
         sh 'echo build'
     }
     
-    when { branch "feature/*" }
+    //when { branch "feature/*" }
+    
+    withEnv(['BRANCH_NAME=feature']) 
+    {
+        stage('zzz stage if') {
+            sh 'printenv'
+        }
+    }
+    
     stage('Test if baranch feature') {
         
         sh 'echo test'

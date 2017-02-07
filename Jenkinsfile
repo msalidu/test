@@ -21,11 +21,7 @@ node {
         }
     }
     
-    stage('Test if baranch feature') {
-        
-        sh 'echo test'
-    }
-    
+
     def DEPLOY="", REL="", NEXT_REL=""
     stage('User input') {  
         timeout(5) {

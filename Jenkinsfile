@@ -12,11 +12,7 @@ node {
     stage('Build') {
         // Get all Causes for the current build
         def causes = currentBuild.rawBuild.getCauses()
-        // Get a specific Cause type (in this case the user who kicked off the build),
-        // if present.
-        def specificCause = currentBuild.rawBuild.getCause(hudson.model.Cause$UserIdCause)
-
-        echo("Bulding.... "+ causes + " - "+specificCause);
+        echo("Bulding.... "+ causes + " - ");
     } 
     
     if ( env.BRANCH_NAME.contains("release") ) {    

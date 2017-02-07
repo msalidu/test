@@ -22,13 +22,17 @@ pipeline {
                     DEPLOY = userInput['DEP'];
                     REL = userInput['VER'];
                     NEXT_REL = userInput['DEV'];
+                    
+                    sh 'ls -la'
 
                 }
                 
             }
+             /*
             steps {
                 sh 'ls -la'
             }
+*/
         }
     }
     post { /* <1> */

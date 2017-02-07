@@ -9,6 +9,12 @@ node {
     def versionRelease = VERSION.replace("-SNAPSHOT", "")
    
     stage('Build') {
+
+        if (env.BRANCH_NAME == "feat1") {                                          
+            echo  "YES ${BRANCH_NAME} ${env.BRANCH_NAME}" 
+        } else {                                   
+            echo  "NO ${BRANCH_NAME} ${env.BRANCH_NAME}"
+        }  
         sh 'echo build'
     }
     

@@ -10,9 +10,7 @@ node {
     def DEPLOY="", REL="", NEXT_REL=""
  
     stage('Build') {
-        // Get all Causes for the current build
-        def causes = currentBuild.rawBuild.getCauses()
-        echo("Bulding.... "+ causes + " - ");
+        echo("Bulding.... "+ BUILD_CAUSE );
     } 
     
     if ( env.BRANCH_NAME.contains("release") ) {    

@@ -14,7 +14,7 @@ node {
     
     //when { branch "feature/*" }
     
-    withEnv(['BRANCH_NAME=feature']) 
+    withEnv(['BRANCH_NAME=feat1']) 
     {
         stage('zzz stage if') {
             sh 'printenv'

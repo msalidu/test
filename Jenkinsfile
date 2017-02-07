@@ -9,6 +9,12 @@ node {
     def versionRelease = VERSION.replace("-SNAPSHOT", "")
     def DEPLOY="", REL="", NEXT_REL=""
  
+     withCredentials([[$class: '2365f259-442a-4253-9fb0-26dd5a2edb3d', credentialsId: 'amazon',
+                            usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD']]) {
+                //available as an env variable, but will be masked if you try to print it out any which way
+                sh 'echo $PASSWORD'
+                echo "${env.USERNAME}"
+            }
     stage('Build') {
         echo  "Bulding.... ${BRANCH_NAME}" 
         sh 'env'

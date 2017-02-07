@@ -10,7 +10,7 @@ node {
    
     
 
-    if (env.BRANCH_NAME.contains("feat) {    
+    if ( env.BRANCH_NAME.contains("feat") ) {    
         stage('Build on feat* ') {
             echo  "YES ${BRANCH_NAME} ${env.BRANCH_NAME}" 
          }

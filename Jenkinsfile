@@ -6,10 +6,12 @@ pipeline {
                 echo 'Hello World'
             }
             
+        }
+         stage('User input') {     
             def DEPLOY="", REL="", NEXT_REL=""
             def versionRelease= "1.0.0"
             def versionDevelop= "1.0.1-SNAPSHOT"
-            stage('User input') {  
+            steps {  
 
                     def userInput = input message: 'Seleziona i valori', 
                                           parameters: [choice(choices: "NO\nUAT\n", description: 'Deploy', name: 'DEP'), 

@@ -59,7 +59,9 @@ node {
     }   
 */
     //def subject = config.subject ? config.subject : "${env.JOB_NAME} - Build #${env.BUILD_NUMBER} - ${currentBuild.result}!"
-    def content = '${JELLY_SCRIPT,template="html_gmail"}'
+    //def content = '${JELLY_SCRIPT,template="html_gmail"}'
+    def content = '${SCRIPT,template="groovy-gmail-html"}'
+
 
     emailext body: content, mimeType: 'text/html', 
              recipientProviders: [[$class: 'DevelopersRecipientProvider']], 

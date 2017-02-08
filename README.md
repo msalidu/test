@@ -18,4 +18,4 @@ ciao pipieline
 booo
 
 pippo
-luto
+luto lato

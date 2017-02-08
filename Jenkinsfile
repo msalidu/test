@@ -1,6 +1,7 @@
 node {
     //aggiorno il repo
-    checkout scm
+    //checkout scm
+    sh 'git checkout $BRANCH_NAME'
     
     // Variabili globali
     def props = readProperties file: 'test.properties'

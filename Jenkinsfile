@@ -17,6 +17,7 @@ node {
             }
     stage('Build') {
         echo  "Bulding.... ${BRANCH_NAME} -  ${env.USERNAME} " 
+        sh "git status"
        
     } 
     
@@ -65,7 +66,7 @@ node {
     def content = '${SCRIPT,template="groovy-pipeline.template"}'
     //def content = '${JELLY_SCRIPT,template="html-with-health-and-console"}'
 
-
+    currentBuild.result = 'SUCCESS'
     emailext body: content, mimeType: 'text/html', 
              recipientProviders: [[$class: 'DevelopersRecipientProvider']], 
              subject: 'aa', to: 'massimo.salidu@openmindonline.it'

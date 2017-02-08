@@ -60,7 +60,7 @@ node {
 */
     //def subject = config.subject ? config.subject : "${env.JOB_NAME} - Build #${env.BUILD_NUMBER} - ${currentBuild.result}!"
     //def content = '${JELLY_SCRIPT,template="html_gmail"}'
-    def content = '${SCRIPT,template="groovy-gmail-html.template"}'
+    def content = '${SCRIPT,template="groovy-pipeline.template"}'
     //def content = '${JELLY_SCRIPT,template="html-with-health-and-console"}'
     
 

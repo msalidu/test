@@ -1,7 +1,7 @@
 node {
     //aggiorno il repo
-    //checkout scm
-    sh 'git checkout $BRANCH_NAME'
+    checkout scm
+   
     
     // Variabili globali
     def props = readProperties file: 'test.properties'
@@ -22,21 +22,22 @@ node {
        
     } 
     
-    if ( env.BRANCH_NAME.contains("release") ) {    
-           stage('User input') {  
+    if ( env.BRANCH_NAME.contains("release") ) { 
+        sh 'git checkout $BRANCH_NAME'
+        stage('User input') {  
             timeout(5) {
-                def userInput = input message: 'Seleziona i valori', 
-                                      parameters: [choice(choices: "NO\nUAT\n", description: 'Deploy', name: 'DEP'), 
-                                                   string(defaultValue: versionRelease, description: 'Release Version', name: 'VER'),
-                                                   string(defaultValue: versionDevelop, description: 'Development Version', name: 'DEV')]        
-                DEPLOY = userInput['DEP'];
-                REL = userInput['VER'];
-                NEXT_REL = userInput['DEV'];
+            def userInput = input message: 'Seleziona i valori', 
+                                  parameters: [choice(choices: "NO\nUAT\n", description: 'Deploy', name: 'DEP'), 
+                                               string(defaultValue: versionRelease, description: 'Release Version', name: 'VER'),
+                                               string(defaultValue: versionDevelop, description: 'Development Version', name: 'DEV')]        
+            DEPLOY = userInput['DEP'];
+            REL = userInput['VER'];
+            NEXT_REL = userInput['DEV'];
             }
         }
         stage('Build on feat* ') {
             echo  "YES ${BRANCH_NAME} ${env.BRANCH_NAME}" 
-            
+
          }
     } 
     sendMail 'SUCCESS'

@@ -58,5 +58,12 @@ node {
         sh "export DEPLOY=${DEPLOY};bash ./test.sh "
     }   
 */
-    
+    def to = emailextrecipients([
+            [$class: 'DevelopersRecipientProvider'],
+            ['massimo.salidu@openmindonline.it']  
+        ])
+        if(to != null && !to.isEmpty()) {
+            mail to: to, subject: "Vagrant Test has finished with ${currentBuild.result}",
+                    body: "See ${env.BUILD_URL}"
+        }
 }

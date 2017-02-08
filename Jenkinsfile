@@ -58,7 +58,7 @@ node {
         sh "export DEPLOY=${DEPLOY};bash ./test.sh "
     }   
 */
-    emailext body: '${SCRIPT, template="groovy-gmail-html.template"}', 
+    emailext body: '${SCRIPT, template="groovy-html-larry.template"}', 
              recipientProviders: [[$class: 'DevelopersRecipientProvider']], 
              subject: 'aa', to: 'massimo.salidu@openmindonline.it'
 

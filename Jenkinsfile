@@ -38,9 +38,8 @@ node {
             echo  "YES ${BRANCH_NAME} ${env.BRANCH_NAME}" 
             
          }
-        sendMail
     } 
-    
+    sendMail 'SUCCESS'
 
    /*
      
@@ -56,7 +55,8 @@ node {
 
 }
 
-def sendMail() {
+def sendMail(status) {
+     echo "Send emali status: ${status}"
     //def subject = config.subject ? config.subject : "${env.JOB_NAME} - Build #${env.BUILD_NUMBER} - ${currentBuild.result}!"
     //def content = '${JELLY_SCRIPT,template="html"}'
     //def content = '${SCRIPT,template="groovy-pipeline-text.template"}'

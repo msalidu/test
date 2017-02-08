@@ -38,17 +38,9 @@ node {
             echo  "YES ${BRANCH_NAME} ${env.BRANCH_NAME}" 
             
          }
+        sendMail
     } 
     
-    //when { branch "feature/*" }
-    /*
-    withEnv(['BRANCH_NAME=feat2']) 
-    {
-        stage('zzz stage if') {
-            sh 'printenv'
-        }
-    }
-*/
 
    /*
      
@@ -60,6 +52,11 @@ node {
         sh "export DEPLOY=${DEPLOY};bash ./test.sh "
     }   
 */
+
+
+}
+
+def sendMail() {
     //def subject = config.subject ? config.subject : "${env.JOB_NAME} - Build #${env.BUILD_NUMBER} - ${currentBuild.result}!"
     //def content = '${JELLY_SCRIPT,template="html"}'
     //def content = '${SCRIPT,template="groovy-pipeline-text.template"}'
@@ -71,5 +68,4 @@ node {
     emailext body: content, mimeType: 'text/html', 
              recipientProviders: [[$class: 'DevelopersRecipientProvider']], 
              subject: 'aa', to: 'massimo.salidu@openmindonline.it'
-
 }

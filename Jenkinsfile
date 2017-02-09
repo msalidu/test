@@ -16,8 +16,9 @@ node {
                 //available as an env variable, but will be masked if you try to print it out any which way
                 //sh '/tmp/printinput.sh $USERNAME $PASSWORD'
                 echo "user ${env.USERNAME}"
+                env.ZAMPA = "${env.USERNAME}"
             }
-    env.ZAMPA = '1.33'
+    
 
     stage('Build') {
         echo  "Bulding.... ${BRANCH_NAME} -  ${env.USERNAME} " 

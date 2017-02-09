@@ -5,12 +5,16 @@ node {
 
     stage('Test') {
         sh 'echo test'
+        def cBuild = currentBuild;
+         println(cBuild);
+         println(cBuild.getRawBuild());
+        
+
+        
     }
 
     
-    def cBuild = currentBuild;
-    println(cBuild);
-
+    
     stage('Deploy') {
         //echo("hello from Pipeline ");
          echo "${BRANCH_NAME} ${env.BRANCH_NAME}"

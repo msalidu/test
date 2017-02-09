@@ -16,7 +16,7 @@ node {
         println("Triggered short desc: "+ trig.getShortDescription() );
         println("is userTriggered:" +userTriggered +" - is indexTriggered:" +  indexTriggered)
         
-        def triggerInfo
+        triggerInfo
 
     }
 

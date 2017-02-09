@@ -7,7 +7,7 @@ node {
         sh 'echo test'
         def cBuild = currentBuild;
          println(cBuild);
-         println(cBuild.getDisplayName());
+         println(cBuild.getProjectName());
          println(cBuild.getBuildVariables());
 
         

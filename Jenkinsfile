@@ -7,7 +7,7 @@ node {
         sh 'echo test'
         def cBuild = currentBuild;
          println(cBuild);
-         println(cBuild.getRawBuild);
+         println(cBuild.getDisplayName());
         
 
         

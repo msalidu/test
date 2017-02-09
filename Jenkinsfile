@@ -17,7 +17,7 @@ node {
 
         if(causesObj != null){
             firstCauses =  causesObj[0];
-           // println ("Cause string: "+firstCauses.class.getName());
+            println ("Cause string: "+firstCauses.class.getName());
             
             /*
             userTriggered = firstCauses instanceof hudson.model.Cause
@@ -28,13 +28,10 @@ node {
         println( causesObj );
         println("Triggered short desc: "+ causesObj[0].getShortDescription() );
         println("is userTriggered:" +userTriggered +" - is indexTriggered:" +  indexTriggered)
-        println("ciao".class.getName());
 
         	
     }
 
-    
-    
     stage('Deploy') {
         //echo("hello from Pipeline ");
          echo "${BRANCH_NAME} ${env.BRANCH_NAME}"

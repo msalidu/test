@@ -3,8 +3,7 @@ node {
     stage('Build') {
         sh 'echo build'
     }
-        boolean userTriggered = false;
-        boolean indexTriggered = false;
+
     stage('Test') {
 
         sh 'echo test'
@@ -16,6 +15,8 @@ node {
         
         println("Triggered short desc: "+ trig.getShortDescription() );
         println("is userTriggered:" +userTriggered +" - is indexTriggered:" +  indexTriggered)
+        
+        def triggerInfo
 
     }
 
@@ -26,3 +27,13 @@ node {
     }
 }
 
+
+boolean userTriggered = false;
+boolean indexTriggered = false;
+// with @NonCPS workflow can be serialized
+// It returns a simple string map so the workflow can be serialized
+@NonCPS
+def triggerInfo(){
+    println ("from funzione triggerInfo") 
+    def triggerObj = currentBuild.rawBuild.getCauses()[0];
+}

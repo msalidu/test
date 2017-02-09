@@ -7,8 +7,9 @@ node {
     stage('Test') {
 
         sh 'echo test'
+        trig= currentBuild.rawBuild.getCauses()[0]
         println(currentBuild.rawBuild.getCauses()[0].class.getName())
-
+        println(trig.class.getName())
         	
     }
 

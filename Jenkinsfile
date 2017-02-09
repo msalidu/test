@@ -25,6 +25,8 @@ node {
     
     if ( env.BRANCH_NAME.contains("release") ) { 
         sh 'git checkout $BRANCH_NAME'
+        sh 'git diff --stat $BRANCH_NAME'
+        
         stage('User input') {  
             timeout(5) {
             def userInput = input message: 'Seleziona i valori', 

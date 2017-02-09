@@ -17,6 +17,8 @@ node {
                 //sh '/tmp/printinput.sh $USERNAME $PASSWORD'
                 echo "user ${env.USERNAME}"
             }
+    env.ZAMPA = '1.33'
+
     stage('Build') {
         echo  "Bulding.... ${BRANCH_NAME} -  ${env.USERNAME} " 
         sh '/tmp/printinput.sh $USERNAME $PASSWORD'

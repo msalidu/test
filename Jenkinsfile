@@ -16,7 +16,7 @@ node {
         println("Triggered short desc: "+ trig.getShortDescription() );
         println("is userTriggered:" +userTriggered +" - is indexTriggered:" +  indexTriggered)
         
-        triggerInfo ''
+        triggerInfo 'void'
 
     }
 
@@ -33,7 +33,7 @@ boolean indexTriggered = false;
 // with @NonCPS workflow can be serialized
 // It returns a simple string map so the workflow can be serialized
 @NonCPS
-def triggerInfo(void){
+def triggerInfo(info){
     println ("from funzione triggerInfo") 
     def triggerObj = currentBuild.rawBuild.getCauses()[0];
 }

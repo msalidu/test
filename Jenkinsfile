@@ -10,6 +10,7 @@ node {
         def trig= currentBuild.rawBuild.getCauses()[0]
         println(currentBuild.rawBuild.getCauses()[0].class.getName())
         println(trig.class.getName())
+        "fasd" instanceof String
         	
     }
 

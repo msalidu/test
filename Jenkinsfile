@@ -14,13 +14,17 @@ node {
         def causesObj = currentBuild.rawBuild.getCauses();
         boolean userTriggered = false;
         boolean indexTriggered = false;
-        /*
+
         if(causesObj != null){
-            firstCauses =  causesObj[0];
+            firstCauses =  causesObj[0].getName();
+            println ("Cause string: "+firstCauses);
+            
+            /*
             userTriggered = firstCauses instanceof hudson.model.Cause
-            indexTriggered = firstCauses instanceof jenkins.branch.BranchIndexingCause      
-        }
+            indexTriggered = firstCauses instanceof jenkins.branch.BranchIndexingCause    
 */
+        }
+
         println( causesObj );
         println("Triggered short desc: "+ causesObj[0].getShortDescription() );
         println("is userTriggered:" +userTriggered +" - is indexTriggered:" +  indexTriggered)

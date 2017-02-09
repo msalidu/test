@@ -9,8 +9,9 @@ node {
          println(cBuild);
          println(cBuild.getProjectName());
          println(cBuild.getRawBuild());
-          println( currentBuild.rawBuild.getCauses() );
-         println( currentBuild.rawBuild.getCauses().getShortDescription() );
+        def causesObj= cBuild.rawBuild.getCauses();
+          println( causesObj );
+         println( causesObj.getShortDescription() );
         	
         
     }

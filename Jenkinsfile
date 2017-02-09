@@ -11,11 +11,18 @@ node {
          println(cBuild.getProjectName());
          println(cBuild.getRawBuild());
         */
-        def causesObj= currentBuild.rawBuild.getCauses();
+        def causesObj = currentBuild.rawBuild.getCauses();
+        boolean userTriggered = fasle;
+        boolean indexTriggered = fasle;
+        if(causesObj != null){
+            firstCauses =  causesObj[0];
+            userTriggered = firstCauses instanceof hudson.model.Cause$UserIdCause
+            indexTriggered = firstCauses instanceof jenkins.branch.BranchIndexingCause      
+        }
         println( causesObj );
-        println("Oggetto: "+ causesObj[0].getShortDescription() );
+        println("Triggered short desc: "+ causesObj[0].getShortDescription() );
+        println("is userTriggered:" +userTriggered +" - is indexTriggered:" +  indexTriggered)
         	
-        
     }
 
     

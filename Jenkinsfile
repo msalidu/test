@@ -1,11 +1,12 @@
 node {
-    def triggerObj = currentBuild.rawBuild.getCauses();
 
     stage('Build') {
         sh 'echo build'
     }
 
     stage('Test') {
+       def triggerObj = currentBuild.rawBuild;
+
         sh 'echo test'
         println(triggerObj)
 

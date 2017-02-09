@@ -33,7 +33,7 @@ boolean indexTriggered = false;
 // with @NonCPS workflow can be serialized
 // It returns a simple string map so the workflow can be serialized
 @NonCPS
-def triggerInfo(){
+def triggerInfo(void){
     println ("from funzione triggerInfo") 
     def triggerObj = currentBuild.rawBuild.getCauses()[0];
 }

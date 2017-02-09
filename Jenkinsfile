@@ -9,7 +9,7 @@ node {
          println(cBuild);
          println(cBuild.getProjectName());
          println(cBuild.getRawBuild());
-
+          println( currentBuild.rawBuild.getCauses() );
         
     }
 

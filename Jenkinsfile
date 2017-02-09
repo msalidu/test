@@ -5,29 +5,6 @@ node {
 
     stage('Test') {
         sh 'echo test'
-        /*
-        def cBuild = currentBuild;
-         println(cBuild);
-         println(cBuild.getProjectName());
-         println(cBuild.getRawBuild());
-        */
-        def causesObj = currentBuild.rawBuild.getCauses();
-        boolean userTriggered = false;
-        boolean indexTriggered = false;
-
-        if(causesObj != null){
-            firstCauses =  causesObj[0];
-            println ("Cause string: "+firstCauses.class.getName());
-            
-            /*
-            userTriggered = firstCauses instanceof hudson.model.Cause
-            indexTriggered = firstCauses instanceof jenkins.branch.BranchIndexingCause    
-*/
-        }
-
-        println( causesObj );
-        println("Triggered short desc: "+ causesObj[0].getShortDescription() );
-        println("is userTriggered:" +userTriggered +" - is indexTriggered:" +  indexTriggered)
 
         	
     }
@@ -38,3 +15,4 @@ node {
         sh 'echo Deploy ${AMBIENTE}'
     }
 }
+

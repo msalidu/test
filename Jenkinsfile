@@ -7,8 +7,8 @@ node {
     // Variabili globali
     def props = readProperties file: 'test.properties'
     def VERSION = props.version
-    def versionDevelop = VERSION.split('\\.')[0] + "."+VERSION.split('\\.')[1] + "."+ (VERSION.split('\\.')[2].toInteger()+1)+"-SNAPSHOT";
     def versionRelease = VERSION.replace("-SNAPSHOT", "")
+    def versionDevelop = versionRelease.split('\\.')[0] + "."+versionRelease.split('\\.')[1] + "."+ (versionRelease.split('\\.')[2].toInteger()+1)+"-SNAPSHOT";
     def DEPLOY="", REL="", NEXT_REL=""
  
      withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: '2365f259-442a-4253-9fb0-26dd5a2edb3d',

@@ -26,5 +26,5 @@ def triggerInfo(info){
     def triggerObj = currentBuild.rawBuild.getCauses()[0];
     userTriggered = triggerObj instanceof hudson.model.Cause$UserIdCause
     indexTriggered = triggerObj instanceof jenkins.branch.BranchIndexingCause
-    println("["+triggerObj+"]: "+Triggered short desc: "+ triggerObj.getShortDescription() );
+    println("[" + triggerObj + "]Triggered by: "+ triggerObj.getShortDescription() );
 }

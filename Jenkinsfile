@@ -16,8 +16,8 @@ node {
         boolean indexTriggered = false;
 
         if(causesObj != null){
-            firstCauses =  causesObj[0].getName();
-            println ("Cause string: "+firstCauses);
+            firstCauses =  causesObj[0];
+            println ("Cause string: "+firstCauses.class.getName());
             
             /*
             userTriggered = firstCauses instanceof hudson.model.Cause

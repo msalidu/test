@@ -25,7 +25,7 @@ node {
     
     if ( env.BRANCH_NAME.contains("release") && userTriggered ) { 
         stage('git checkout'){
-            sh 'git checkout ${BRANCH_NAME}#origin/'
+            sh 'git checkout ${GIT_BRANCH#origin/}'
             sh 'git pull'
         }
         stage('User input') {  

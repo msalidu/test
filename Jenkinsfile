@@ -10,7 +10,7 @@ node {
         sh 'echo test'
         def trig= currentBuild.rawBuild.getCauses()[0]
         //println(currentBuild.rawBuild.getCauses()[0].class.getName())
-        //println(trig.class.getName())
+        println(trig.class.getName());
         userTriggered = trig instanceof hudson.model.Cause
         indexTriggered = trig instanceof jenkins.branch.BranchIndexingCause
         

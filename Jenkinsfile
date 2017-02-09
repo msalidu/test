@@ -1,7 +1,8 @@
 node {
     //aggiorno il repo
     checkout scm
-   
+    //recupero info
+    triggerInfo 'void'
     
     // Variabili globali
     def props = readProperties file: 'test.properties'
@@ -56,17 +57,24 @@ node {
 
 }
 
+//Funzione send mail
 def sendMail(status) {
-     echo "Send emali status: ${status}"
-    //def subject = config.subject ? config.subject : "${env.JOB_NAME} - Build #${env.BUILD_NUMBER} - ${currentBuild.result}!"
-    //def content = '${JELLY_SCRIPT,template="html"}'
-    //def content = '${SCRIPT,template="groovy-pipeline-text.template"}'
+    echo "Send emali status: ${status}"    
+    content = '${SCRIPT,template="groovy-pipeline.template"}'
+    currentBuild.result = status
     
-    def content = '${SCRIPT,template="groovy-pipeline.template"}'
-    //def content = '${JELLY_SCRIPT,template="html-with-health-and-console"}'
-
-    currentBuild.result = 'SUCCESS'
     emailext body: content, mimeType: 'text/html', 
              recipientProviders: [[$class: 'DevelopersRecipientProvider']], 
-             subject: 'aa', to: 'massimo.salidu@openmindonline.it'
+             subject: "${env.JOB_NAME} - Build #${env.BUILD_NUMBER}", to: 'massimo.salidu@openmindonline.it'
+}
+
+// Funzione per reperire informazioni sull'evento di partenza
+boolean userTriggered = false;
+boolean indexTriggered = false;
+@NonCPS
+def triggerInfo(info){
+    def triggerObj = currentBuild.rawBuild.getCauses()[0];
+    userTriggered = triggerObj instanceof hudson.model.Cause$UserIdCause
+    indexTriggered = triggerObj instanceof jenkins.branch.BranchIndexingCause
+    println("["+triggerObj+"]: "+Triggered short desc: "+ triggerObj.getShortDescription() );
 }

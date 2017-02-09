@@ -12,8 +12,8 @@ node {
          println(cBuild.getRawBuild());
         */
         def causesObj = currentBuild.rawBuild.getCauses();
-        boolean userTriggered = fasle;
-        boolean indexTriggered = fasle;
+        boolean userTriggered = false;
+        boolean indexTriggered = false;
         if(causesObj != null){
             firstCauses =  causesObj[0];
             userTriggered = firstCauses instanceof hudson.model.Cause$UserIdCause

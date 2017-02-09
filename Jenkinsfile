@@ -10,6 +10,7 @@ node {
          println(cBuild.getProjectName());
          println(cBuild.getRawBuild());
           println( currentBuild.rawBuild.getCauses() );
+        println ( currentBuild.rawBuild.getCause(hudson.model.Cause$UserIdCause) );
         
     }
 

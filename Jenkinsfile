@@ -5,13 +5,15 @@ node {
 
     stage('Test') {
         sh 'echo test'
+        /*
         def cBuild = currentBuild;
          println(cBuild);
          println(cBuild.getProjectName());
          println(cBuild.getRawBuild());
+        */
         def causesObj= cBuild.rawBuild.getCauses();
-          println( causesObj );
-         println("oggetto"+ causesObj[0].getShortDescription() );
+        println( causesObj );
+        println("oggetto"+ causesObj[0].getShortDescription() );
         	
         
     }

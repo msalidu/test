@@ -5,10 +5,9 @@ node {
     }
 
     stage('Test') {
-       def triggerObj = currentBuild.rawBuild;
 
         sh 'echo test'
-        println(triggerObj)
+        println(currentBuild.rawBuild)
 
         	
     }

@@ -16,7 +16,7 @@ node {
         boolean indexTriggered = false;
         if(causesObj != null){
             firstCauses =  causesObj[0];
-            userTriggered = firstCauses instanceof hudson.model.Cause$UserIdCause
+            userTriggered = firstCauses instanceof hudson.model.Cause
             indexTriggered = firstCauses instanceof jenkins.branch.BranchIndexingCause      
         }
         println( causesObj );

@@ -10,13 +10,13 @@ node {
         def trig= currentBuild.rawBuild.getCauses()[0]
         //println(currentBuild.rawBuild.getCauses()[0].class.getName())
         println(trig.class.getName());
-        userTriggered = trig instanceof hudson.model.Cause$UserIdCause
-        indexTriggered = trig instanceof jenkins.branch.BranchIndexingCause
-        
+        //userTriggered = trig instanceof hudson.model.Cause$UserIdCause
+        //indexTriggered = trig instanceof jenkins.branch.BranchIndexingCause
+        triggerInfo 'void'
         println("Triggered short desc: "+ trig.getShortDescription() );
         println("is userTriggered:" +userTriggered +" - is indexTriggered:" +  indexTriggered)
         
-        triggerInfo 
+       
 
     }
 
@@ -36,4 +36,6 @@ boolean indexTriggered = false;
 def triggerInfo(info){
     println ("from funzione triggerInfo") 
     def triggerObj = currentBuild.rawBuild.getCauses()[0];
+    userTriggered = triggerObj instanceof hudson.model.Cause$UserIdCause
+    indexTriggered = triggerObj instanceof jenkins.branch.BranchIndexingCause
 }

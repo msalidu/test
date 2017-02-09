@@ -8,7 +8,7 @@ node {
         def cBuild = currentBuild;
          println(cBuild);
          println(cBuild.getProjectName());
-         println(cBuild.getBuildVariables());
+         println(cBuild.getRawBuild());
 
         
     }

@@ -11,7 +11,7 @@ node {
         def trig= currentBuild.rawBuild.getCauses()[0]
         //println(currentBuild.rawBuild.getCauses()[0].class.getName())
         println(trig.class.getName());
-        userTriggered = trig instanceof hudson.model.Cause
+        userTriggered = trig instanceof hudson.model.Cause$UserIdCause
         indexTriggered = trig instanceof jenkins.branch.BranchIndexingCause
         
         println("Triggered short desc: "+ trig.getShortDescription() );

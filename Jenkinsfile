@@ -14,7 +14,7 @@ node {
         userTriggered = trig instanceof hudson.model.Cause
         indexTriggered = trig instanceof jenkins.branch.BranchIndexingCause
         
-        println("Triggered short desc: "+ trig].getShortDescription() );
+        println("Triggered short desc: "+ trig.getShortDescription() );
         println("is userTriggered:" +userTriggered +" - is indexTriggered:" +  indexTriggered)
 
         	

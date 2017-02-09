@@ -11,19 +11,17 @@ node {
     def versionDevelop = versionRelease.split('\\.')[0] + "."+versionRelease.split('\\.')[1] + "."+ (versionRelease.split('\\.')[2].toInteger()+1)+"-SNAPSHOT";
     def DEPLOY="", REL="", NEXT_REL=""
  
-     withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: '2365f259-442a-4253-9fb0-26dd5a2edb3d',
-                            usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD']]) {
-                //available as an env variable, but will be masked if you try to print it out any which way
-                //sh '/tmp/printinput.sh $USERNAME $PASSWORD'
-                echo "user ${env.USERNAME}"
-                env.ZAMPA = "${env.USERNAME}"
-            }
+    //Imposto come variabili di env
+    withCredentials([[$class: 'UsernamePasswordMultiBinding', 
+                        credentialsId: '2365f259-442a-4253-9fb0-26dd5a2edb3d',
+                        usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD']])  {
+        env.AWS_S3_KEY = "${env.USERNAME}"
+        env.AWS_S3_SECRET = "${env.PASSWORD}"
+    }
     
-
     stage('Build') {
         echo  "Bulding.... ${BRANCH_NAME} -  ${env.USERNAME} " 
         sh '/tmp/printinput.sh $USERNAME $PASSWORD'
-       
     } 
     
     if ( env.BRANCH_NAME.contains("release") && userTriggered ) { 

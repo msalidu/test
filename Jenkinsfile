@@ -11,7 +11,7 @@ node {
          println(cBuild.getRawBuild());
         def causesObj= cBuild.rawBuild.getCauses();
           println( causesObj );
-         println( causesObj.getShortDescription() );
+         println( causesObj.iterator().next().getShortDescription() );
         	
         
     }

@@ -11,9 +11,9 @@ node {
          println(cBuild.getProjectName());
          println(cBuild.getRawBuild());
         */
-        def causesObj= cBuild.rawBuild.getCauses();
+        def causesObj= currentBuild.rawBuild.getCauses();
         println( causesObj );
-        println("oggetto"+ causesObj[0].getShortDescription() );
+        println("Oggetto: "+ causesObj[0].getShortDescription() );
         	
         
     }

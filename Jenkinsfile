@@ -7,7 +7,7 @@ node {
     stage('Test') {
 
         sh 'echo test'
-        println(currentBuild.rawBuild.getCauses())
+        println(currentBuild.rawBuild.getCauses().class.getName())
 
         	
     }

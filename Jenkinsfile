@@ -46,9 +46,10 @@ node {
                 }
             }
             
-            stage("Release on  $BRANCH_NAME") {
-                echo  "YES ${BRANCH_NAME} ${NEXT_REL}" 
-                sh 'echo version=${NEXT_REL} > version.properties'
+            stage("Release") {
+                echo  "YES ${BRANCH_NAME} ${NEXT_REL}"
+                sh 'echo Deploy ${DEPLOY} - NextREL ${NEXT_REL} '
+                sh 'echo "version=${NEXT_REL}" > version.properties'
             }
         } 
         MYJOB_STATUS ="SUCCESS"

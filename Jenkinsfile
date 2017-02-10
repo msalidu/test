@@ -58,7 +58,10 @@ node {
         throw error
     } finally {
         if ( env.BRANCH_NAME.contains(RELEASE_BRANCH) && userTriggered ) { 
-            checkout scm
+             stage('git clean'){
+                sh 'git branch -d ${BRANCH_NAME}'
+                checkout scm
+            }
         }
         sendMail MYJOB_STATUS
     }

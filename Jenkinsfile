@@ -28,7 +28,7 @@ node {
             echo  "Bulding.... ${BRANCH_NAME} -  ${env.USERNAME} " 
             //sh '/tmp/printinput.sh $USERNAME $PASSWORD'
             sh 'ls -la'
-            sh './build.sh 0'
+            sh 'bash ./build.sh 0'
         } 
         
         if ( env.BRANCH_NAME.contains(RELEASE_BRANCH) && userTriggered ) { 

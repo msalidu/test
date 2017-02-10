@@ -56,7 +56,6 @@ node {
         MYJOB_STATUS ="FAIILLURE"
             throw error
     } finally {
-        echo  "Finaly: ${MYJOB_STATUS}" 
         sendMail MYJOB_STATUS
     }
 }

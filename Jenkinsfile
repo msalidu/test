@@ -1,63 +1,59 @@
 node {
-    //aggiorno il repo
-    checkout scm
-    //recupero info
-    triggerInfo 'void'
-    
-    // Variabili globali
-    def props = readProperties file: 'test.properties'
-    def VERSION = props.version
-    def versionRelease = VERSION.replace("-SNAPSHOT", "")
-    def versionDevelop = versionRelease.split('\\.')[0] + "."+versionRelease.split('\\.')[1] + "."+ (versionRelease.split('\\.')[2].toInteger()+1)+"-SNAPSHOT";
-    def DEPLOY="", REL="", NEXT_REL=""
- 
-    //Imposto come variabili di env
-    withCredentials([[$class: 'UsernamePasswordMultiBinding', 
-                        credentialsId: '2365f259-442a-4253-9fb0-26dd5a2edb3d',
-                        usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD']])  {
-        env.AWS_S3_KEY = "${env.USERNAME}"
-        env.AWS_S3_SECRET = "${env.PASSWORD}"
-    }
-    
-    stage('Build') {
-        echo  "Bulding.... ${BRANCH_NAME} -  ${env.USERNAME} " 
-        sh '/tmp/printinput.sh $USERNAME $PASSWORD'
-    } 
-    
-    if ( env.BRANCH_NAME.contains("release") && userTriggered ) { 
-        stage('git checkout'){
-            sh 'git checkout ${BRANCH_NAME}; git pull'
-        }
-        stage('User input') {  
-            timeout(5) {
-            def userInput = input message: 'Seleziona i valori', 
-                                  parameters: [choice(choices: "NO\nUAT\n", description: 'Deploy', name: 'DEP'), 
-                                               string(defaultValue: versionRelease, description: 'Release Version', name: 'VER'),
-                                               string(defaultValue: versionDevelop, description: 'Development Version', name: 'DEV')]        
-            DEPLOY = userInput['DEP'];
-            REL = userInput['VER'];
-            NEXT_REL = userInput['DEV'];
-            }
-        }
-        stage('Build on feat* ') {
-            echo  "YES ${BRANCH_NAME} ${env.BRANCH_NAME}" 
-
-         }
-    } 
-    sendMail 'SUCCESS'
-
-   /*
+    try {
+        //aggiorno il repo
+        checkout scm
+        //recupero info
+        triggerInfo 'void'
+        
+        // Variabili globali
+        def props = readProperties file: 'test.properties'
+        def VERSION = props.version
+        def versionRelease = VERSION.replace("-SNAPSHOT", "")
+        def versionDevelop = versionRelease.split('\\.')[0] + "."+versionRelease.split('\\.')[1] + "."+ (versionRelease.split('\\.')[2].toInteger()+1)+"-SNAPSHOT";
+        def MYJOB_STATUS = "undef", DEPLOY="", REL="", NEXT_REL=""
      
-    stage('Deploy') {
-        //echo("hello from Pipeline ");
-        echo  "${BRANCH_NAME} ${env.BRANCH_NAME}"
-        echo("Deploy: "+ DEPLOY + "- " + BRANCH_NAME + " -- " + NEXT_REL + " -- " + REL);
+        //Imposto come variabili di env
+        withCredentials([[$class: 'UsernamePasswordMultiBinding', 
+                            credentialsId: '2365f259-442a-4253-9fb0-26dd5a2edb3d',
+                            usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD']])  {
+            env.AWS_S3_KEY = "${env.USERNAME}"
+            env.AWS_S3_SECRET = "${env.PASSWORD}"
+        }
+        
+        stage('Build') {
+            echo  "Bulding.... ${BRANCH_NAME} -  ${env.USERNAME} " 
+            sh '/tmp/printinput.sh $USERNAME $PASSWORD'
+        } 
+        
+        if ( env.BRANCH_NAME.contains("release") && userTriggered ) { 
+            stage('git checkout'){
+                sh 'git checkout ${BRANCH_NAME}; git pull'
+            }
+            
+            stage('User input') {  
+                timeout(5) {
+                def userInput = input message: 'Seleziona i valori', 
+                                      parameters: [choice(choices: "NO\nUAT\n", description: 'Deploy', name: 'DEP'), 
+                                                   string(defaultValue: versionRelease, description: 'Release Version', name: 'VER'),
+                                                   string(defaultValue: versionDevelop, description: 'Development Version', name: 'DEV')]        
+                DEPLOY = userInput['DEP'];
+                REL = userInput['VER'];
+                NEXT_REL = userInput['DEV'];
+                }
+            }
+            
+            stage('Build on feat* ') {
+                echo  "YES ${BRANCH_NAME} ${env.BRANCH_NAME}" 
 
-        sh "export DEPLOY=${DEPLOY};bash ./test.sh "
-    }   
-*/
-
-
+            }
+        } 
+        MYJOB_STATUS ="SUCCESS"
+    } catch (error) {
+        MYJOB_STATUS ="FAIILLURE"
+            throw error
+    } finally {
+        sendMail MYJOB_STATUS
+    }
 }
 
 //Funzione send mail

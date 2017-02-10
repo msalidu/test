@@ -55,8 +55,11 @@ node {
         MYJOB_STATUS ="SUCCESS"
     } catch (error) {
         MYJOB_STATUS ="FAIILLURE"
-            throw error
+        throw error
     } finally {
+        if ( env.BRANCH_NAME.contains(RELEASE_BRANCH) && userTriggered ) { 
+            git scm
+        }
         sendMail MYJOB_STATUS
     }
 }

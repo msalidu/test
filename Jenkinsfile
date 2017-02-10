@@ -58,7 +58,7 @@ node {
         throw error
     } finally {
         if ( env.BRANCH_NAME.contains(RELEASE_BRANCH) && userTriggered ) { 
-            git scm
+            checkout scm
         }
         sendMail MYJOB_STATUS
     }

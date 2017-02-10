@@ -30,6 +30,8 @@ node {
         //echo("hello from Pipeline ");
         echo  "${BRANCH_NAME} ${env.BRANCH_NAME}"
         echo("Ambiente Selezionato per deploy: "+ DEPLOY + " -- rel: " +  NEXT_REL);
-        sh 'echo Deploy $DEPLOY'
+        sh "echo Deploy $DEPLOY"
+        def testVar='foo'
+        sh "echo $testVar"
     }
 }

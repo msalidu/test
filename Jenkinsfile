@@ -55,7 +55,7 @@ node {
         } 
         MYJOB_STATUS ="SUCCESS"
     } catch (error) {
-       sendMail 'FAIILLURE
+       sendMail 'FAIILLURE'
        throw error
     } finally {
         if ( env.BRANCH_NAME.contains(RELEASE_BRANCH) && userTriggered ) { 

@@ -17,14 +17,19 @@ node {
     }
 */
     def userInput;
+    def  DEPLOY="", REL="", NEXT_REL=""
+
     stage('input2') {  
         userInput = input message: 'Seleziona i valori', parameters: [string(defaultValue: 'UAT', description: 'ambiente target', name: 'AMBIENTE'), string(defaultValue: '0.0.0', description: 'versione da rilasciare', name: 'VERSIONE')]
+        DEPLOY = userInput['AMBIENTE']
+        NEXT_REL = userInput['VERSIONE']
         echo("Ambiente Selezionato: "+ userInput['AMBIENTE'] + " -- rel: " + userInput['VERSIONE']);
     } 
     
     stage('Deploy') {
         //echo("hello from Pipeline ");
-         echo  "${BRANCH_NAME} ${env.BRANCH_NAME}"
-        sh 'echo Deploy ${AMBIENTE}'
+        echo  "${BRANCH_NAME} ${env.BRANCH_NAME}"
+        echo("Ambiente Selezionato: "+ DEPLOY + " -- rel: " +  NEXT_REL);
+        sh 'echo Deploy ${DEPLOY}'
     }
 }

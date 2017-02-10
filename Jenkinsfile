@@ -49,6 +49,7 @@ node {
             stage("Release") {
                 //echo  "YES ${BRANCH_NAME} ${NEXT_REL}"
                 sh "echo version=${NEXT_REL} > test.properties"
+                sh "git commit test.properties -m 'Release ${NEXT_REL}'"
             }
         } 
         MYJOB_STATUS ="SUCCESS"

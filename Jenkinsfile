@@ -1,3 +1,6 @@
+//nome del branch da cui fare i rilasci
+def RELEASE_BRANCH = "release"
+    
 node {
     def MYJOB_STATUS = "undef"
     try {
@@ -26,7 +29,7 @@ node {
             sh '/tmp/printinput.sh $USERNAME $PASSWORD'
         } 
         
-        if ( env.BRANCH_NAME.contains("release") && userTriggered ) { 
+        if ( env.BRANCH_NAME.contains(RELEASE_BRANCH) && userTriggered ) { 
             stage('git checkout'){
                 sh 'git checkout ${BRANCH_NAME}; git pull'
             }
@@ -54,7 +57,7 @@ node {
             throw error
     } finally {
         echo  "Finaly: ${MYJOB_STATUS}" 
-        sendMail "SUCCESS"
+        sendMail MYJOB_STATUS
     }
 }
 

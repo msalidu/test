@@ -55,16 +55,17 @@ node {
         } 
         MYJOB_STATUS ="SUCCESS"
     } catch (error) {
-        MYJOB_STATUS ="FAIILLURE"
-        throw error
+       sendMail 'FAIILLURE
+       throw error
     } finally {
         if ( env.BRANCH_NAME.contains(RELEASE_BRANCH) && userTriggered ) { 
              stage('git clean'){
                 checkout scm
                 sh 'git branch -d ${BRANCH_NAME}'
             }
+            sendMail MYJOB_STATUS
         }
-        sendMail MYJOB_STATUS
+        
     }
 }
 

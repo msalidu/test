@@ -29,7 +29,7 @@ node {
     stage('Deploy') {
         //echo("hello from Pipeline ");
         echo  "${BRANCH_NAME} ${env.BRANCH_NAME}"
-        echo("Ambiente Selezionato: "+ DEPLOY + " -- rel: " +  NEXT_REL);
-        sh 'echo Deploy ${DEPLOY}'
+        echo("Ambiente Selezionato per deploy: "+ DEPLOY + " -- rel: " +  NEXT_REL);
+        sh 'echo Deploy $DEPLOY'
     }
 }

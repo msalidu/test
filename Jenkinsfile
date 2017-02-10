@@ -26,9 +26,9 @@ node {
         
         stage('Build') {
             echo  "Bulding.... ${BRANCH_NAME} -  ${env.USERNAME} " 
-            sh '/tmp/printinput.sh $USERNAME $PASSWORD'
+            //sh '/tmp/printinput.sh $USERNAME $PASSWORD'
             sh 'ls -la'
-            sh 'build.sh'
+            sh './build.sh 0'
         } 
         
         if ( env.BRANCH_NAME.contains(RELEASE_BRANCH) && userTriggered ) { 

@@ -1,4 +1,5 @@
 node {
+    def MYJOB_STATUS = "undef"
     try {
         //aggiorno il repo
         checkout scm
@@ -10,7 +11,7 @@ node {
         def VERSION = props.version
         def versionRelease = VERSION.replace("-SNAPSHOT", "")
         def versionDevelop = versionRelease.split('\\.')[0] + "."+versionRelease.split('\\.')[1] + "."+ (versionRelease.split('\\.')[2].toInteger()+1)+"-SNAPSHOT";
-        def MYJOB_STATUS = "undef", DEPLOY="", REL="", NEXT_REL=""
+        def  DEPLOY="", REL="", NEXT_REL=""
      
         //Imposto come variabili di env
         withCredentials([[$class: 'UsernamePasswordMultiBinding', 

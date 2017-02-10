@@ -48,9 +48,7 @@ node {
             
             stage('Release on  ${BRANCH_NAME}') {
                 echo  "YES ${BRANCH_NAME} ${env.BRANCH_NAME}" 
-                test.properties
                 sh 'echo $NEXT_REL > version.properties'
-
             }
         } 
         MYJOB_STATUS ="SUCCESS"

@@ -27,6 +27,7 @@ node {
         stage('Build') {
             echo  "Bulding.... ${BRANCH_NAME} -  ${env.USERNAME} " 
             sh '/tmp/printinput.sh $USERNAME $PASSWORD'
+            sh 'ls -la'
             sh 'build.sh'
         } 
         
@@ -56,7 +57,7 @@ node {
         } 
         MYJOB_STATUS ="SUCCESS"
     } catch (error) {
-       sendMail 'FAIILLURE'
+       sendMail 'FAILURE'
        throw error
     } finally {
         if ( env.BRANCH_NAME.contains(RELEASE_BRANCH) && userTriggered ) { 

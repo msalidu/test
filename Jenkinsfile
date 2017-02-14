@@ -1,8 +1,7 @@
 node {
     //aggiorno il repo
-    //checkout scm
-    sh 'git checkout $BRANCH_NAME'
-    
+    checkout scm
+
     // Variabili globali
     def props = readProperties file: 'test.properties'
     def VERSION = props.version
@@ -40,19 +39,6 @@ node {
     }
 
     // sendMail 'SUCCESS'
-
-   /*
-     
-    stage('Deploy') {
-        //echo("hello from Pipeline ");
-        echo  "${BRANCH_NAME} ${env.BRANCH_NAME}"
-        echo("Deploy: "+ DEPLOY + "- " + BRANCH_NAME + " -- " + NEXT_REL + " -- " + REL);
-
-        sh "export DEPLOY=${DEPLOY};bash ./test.sh "
-    }   
-*/
-
-
 }
 
 def sendMail(status) {

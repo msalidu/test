@@ -38,7 +38,7 @@ node {
         echo  "Jira release ${NEXT_REL} $NEXT_REL" 
         step([$class: 'hudson.plugins.jira.JiraReleaseVersionUpdaterBuilder', 
             jiraProjectKey: 'TJP', 
-            jiraRelease: '$NEXT_REL ])    
+            jiraRelease: $NEXT_REL ])    
     }
 
     // sendMail 'SUCCESS'

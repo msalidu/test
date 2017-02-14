@@ -1,3 +1,5 @@
+import hudson.plugins.jira.JiraSite;
+
 node {
     //aggiorno il repo
     checkout scm
@@ -18,6 +20,8 @@ node {
     stage('Build') {
         echo  "Bulding.... ${BRANCH_NAME} -  ${env.USERNAME} " 
         sh "git status"
+        String jiraUrl = JiraSite.get(currentBuild.rawBuild).name       
+        echo "JiraURL: "+jiraUrl
        
     } 
     

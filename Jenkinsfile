@@ -37,7 +37,7 @@ node {
     stage('Jira Update ') {
         echo  "Jira release ${NEXT_REL} $NEXT_REL" 
         step([$class: 'hudson.plugins.jira.JiraReleaseVersionUpdaterBuilder', 
-            jiraProjectKey: 'TJP', 
+            jiraProjectKey: 'TJPBOO', 
             jiraRelease: '0.0.0' ])    
     }
 

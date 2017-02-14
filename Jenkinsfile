@@ -22,23 +22,23 @@ node {
        
     } 
     
-    if ( env.BRANCH_NAME.contains("release") ) {    
-           stage('User input') {  
-            timeout(5) {
-                def userInput = input message: 'Seleziona i valori', 
-                                      parameters: [choice(choices: "NO\nUAT\n", description: 'Deploy', name: 'DEP'), 
-                                                   string(defaultValue: versionRelease, description: 'Release Version', name: 'VER'),
-                                                   string(defaultValue: versionDevelop, description: 'Development Version', name: 'DEV')]        
-                DEPLOY = userInput['DEP'];
-                REL = userInput['VER'];
-                NEXT_REL = userInput['DEV'];
-            }
+
+    stage('User input') {  
+        timeout(5) {
+            def userInput = input message: 'Seleziona i valori', 
+                                  parameters: [choice(choices: "NO\nUAT\n", description: 'Deploy', name: 'DEP'), 
+                                               string(defaultValue: versionRelease, description: 'Release Version', name: 'VER'),
+                                               string(defaultValue: versionDevelop, description: 'Development Version', name: 'DEV')]        
+            DEPLOY = userInput['DEP'];
+            REL = userInput['VER'];
+            NEXT_REL = userInput['DEV'];
         }
-        stage('Build on feat* ') {
-            echo  "YES ${BRANCH_NAME} ${env.BRANCH_NAME}" 
-            
-         }
-    } 
+    }
+
+    stage('Jira Update ') {
+        echo  "Jira release ${NEXT_REL} $NEXT_REL" 
+    }
+
     // sendMail 'SUCCESS'
 
    /*

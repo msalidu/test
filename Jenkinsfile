@@ -14,8 +14,9 @@ node {
         def props = readProperties file: 'test.properties'
         def VERSION = props.version
         def versionRelease = VERSION.replace("-SNAPSHOT", "")
+        def versionPrevius = versionRelease.split('\\.')[0] + "."+versionRelease.split('\\.')[1] + "."+ (versionRelease.split('\\.')[2].toInteger()-1);
         def versionDevelop = versionRelease.split('\\.')[0] + "."+versionRelease.split('\\.')[1] + "."+ (versionRelease.split('\\.')[2].toInteger()+1)+"-SNAPSHOT";
-        def  DEPLOY="", REL="", NEXT_REL=""
+        def  DEPLOY="", REL="", NEXT_REL="", PREVIOUS_REL =""
      
         //Imposto come variabili di env
         withCredentials([[$class: 'UsernamePasswordMultiBinding', 
@@ -39,13 +40,15 @@ node {
             
             stage('User input') {  
                 timeout(5) {
-                def userInput = input message: 'Seleziona i valori', 
+                    def userInput = input message: 'Seleziona i valori', 
                                       parameters: [choice(choices: "NO\nUAT\n", description: 'Deploy', name: 'DEP'), 
                                                    string(defaultValue: versionRelease, description: 'Release Version', name: 'VER'),
-                                                   string(defaultValue: versionDevelop, description: 'Development Version', name: 'DEV')]        
-                DEPLOY = userInput['DEP'];
-                REL = userInput['VER'];
-                NEXT_REL = userInput['DEV'];
+                                                   string(defaultValue: versionDevelop, description: 'Development Version', name: 'DEV'),
+                                                   string(defaultValue: versionPrevius, description: 'Previus Version (for close jira)', name: 'PREV']        
+                    DEPLOY = userInput['DEP'];
+                    REL = userInput['VER'];
+                    NEXT_REL = userInput['DEV'];
+                    PREVIOUS_REL = userInput['PREV'];
                 }
             }
             
@@ -57,8 +60,9 @@ node {
             }
             
             stage ("Update Jira"){
+                def NEW_REL = NEXT_REL.replace("-SNAPSHOT", "")
                 //sh "/usr/bin/ruby /data/jenkins-home/scripts/jira-client.rb -n $JIRA_PROJECT -r "
-                sh "echo rele:  $JIRA_PROJECT"
+                sh "echo rele:  $JIRA_PROJECT pre $PREVIOUS_REL - new $NEW_REL"
             }
         } 
         MYJOB_STATUS ="SUCCESS"

@@ -44,7 +44,8 @@ node {
                                       parameters: [choice(choices: "NO\nUAT\n", description: 'Deploy', name: 'DEP'), 
                                                    string(defaultValue: versionRelease, description: 'Release Version', name: 'VER'),
                                                    string(defaultValue: versionDevelop, description: 'Development Version', name: 'DEV'),
-                                                   string(defaultValue: versionPrevius, description: 'Previus Version (for close jira)', name: 'PREV']        
+                                                   string(defaultValue: versionPrevius, description: 'Previus Version (for close jira)', name: 'PREV') 
+                                                  ]        
                     DEPLOY = userInput['DEP'];
                     REL = userInput['VER'];
                     NEXT_REL = userInput['DEV'];

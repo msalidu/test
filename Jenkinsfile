@@ -1,5 +1,6 @@
 //nome del branch da cui fare i rilasci
 def RELEASE_BRANCH = "release"
+def JIRA_PROJECT = "TJP"
     
 node {
     def MYJOB_STATUS = "undef"
@@ -53,6 +54,11 @@ node {
                 sh "echo version=${NEXT_REL} > test.properties"
                 sh "git commit test.properties -m 'Release ${NEXT_REL}'"
                 sh "git push"
+            }
+            
+            stage ("Update Jira"){
+                //sh "/usr/bin/ruby /data/jenkins-home/scripts/jira-client.rb -n $JIRA_PROJECT -r "
+                sh "echo rele:  $JIRA_PROJECT"
             }
         } 
         MYJOB_STATUS ="SUCCESS"

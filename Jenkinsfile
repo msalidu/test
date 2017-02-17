@@ -1,3 +1,4 @@
+
 //nome del branch da cui fare i rilasci
 def RELEASE_BRANCH = "release"
 def JIRA_PROJECT = "TJP"
@@ -9,15 +10,7 @@ node {
         checkout scm
         //recupero info
         triggerInfo 'void'
-        
-        // Variabili globali
-        def props = readProperties file: 'test.properties'
-        def VERSION = props.version
-        def versionRelease = VERSION.replace("-SNAPSHOT", "")
-        def versionPrevius = versionRelease.split('\\.')[0] + "."+versionRelease.split('\\.')[1] + "."+ (versionRelease.split('\\.')[2].toInteger()-1);
-        def versionDevelop = versionRelease.split('\\.')[0] + "."+versionRelease.split('\\.')[1] + "."+ (versionRelease.split('\\.')[2].toInteger()+1)+"-SNAPSHOT";
-        def  DEPLOY="", REL="", NEXT_REL="", PREVIOUS_REL =""
-     
+             
         //Imposto come variabili di env
         withCredentials([[$class: 'UsernamePasswordMultiBinding', 
                             credentialsId: '2365f259-442a-4253-9fb0-26dd5a2edb3d',
@@ -37,8 +30,20 @@ node {
             stage('git checkout'){
                 sh 'git checkout ${BRANCH_NAME}; git pull'
             }
+            def GIT_LASTREL_TAG = sh (
+                script: 'git --no-pager tag -l 0.* 1.* --sort  version:refname | tail -n1',
+                returnStdout: true
+            ).trim()
             
-            stage('User input') {  
+            def props = readProperties file: 'test.properties'
+            def VERSION = props.version
+            def versionRelease = VERSION.replace("-SNAPSHOT", "")
+            def versionPrevius = versionRelease.split('\\.')[0] + "."+versionRelease.split('\\.')[1] + "."+ (versionRelease.split('\\.')[2].toInteger()-1);
+            def versionDevelop = versionRelease.split('\\.')[0] + "."+versionRelease.split('\\.')[1] + "."+ (versionRelease.split('\\.')[2].toInteger()+1)+"-SNAPSHOT";
+            def  DEPLOY="", REL="", NEXT_REL="", PREVIOUS_REL =""
+
+            stage('User input') { 
+                echo "Git last tag: ${GIT_LASTREL_TAG} - properties last rel: ${versionRelease}" 
                 timeout(5) {
                     def userInput = input message: 'Seleziona i valori', 
                                       parameters: [choice(choices: "NO\nUAT\n", description: 'Deploy', name: 'DEP'), 

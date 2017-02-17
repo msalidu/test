@@ -30,10 +30,13 @@ node {
             stage('git checkout'){
                 sh 'git checkout ${BRANCH_NAME}; git pull'
             }
+            
             def GIT_LASTREL_TAG = sh (
                 script: 'git --no-pager tag -l 0.* 1.* --sort  version:refname | tail -n1',
                 returnStdout: true
             ).trim()
+            //def versionRelease = GIT_LASTREL_TAG.split('\\.')[0] + "."+GIT_LASTREL_TAG.split('\\.')[1] + "."+ (GIT_LASTREL_TAG.split('\\.')[2].toInteger()+1);
+
             
             def props = readProperties file: 'test.properties'
             def VERSION = props.version

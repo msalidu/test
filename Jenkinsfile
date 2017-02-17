@@ -63,7 +63,7 @@ node {
             
             stage ("Update Jira"){
                 def NEW_REL = NEXT_REL.replace("-SNAPSHOT", "")
-                sh "/usr/bin/ruby /data/jenkins-home/scripts/jira-client.rb -a close -n $JIRA_PROJECT -r $PREVIOUS_REL"
+                sh "/usr/bin/ruby /data/jenkins-home/scripts/jira-client.rb -a close -n $JIRA_PROJECT -r $REL"
                 sh "/usr/bin/ruby /data/jenkins-home/scripts/jira-client.rb -a create -n $JIRA_PROJECT -r $NEW_REL"
                 //sh "echo rele:  $JIRA_PROJECT pre $PREVIOUS_REL - new $NEW_REL"
             }

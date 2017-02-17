@@ -1,6 +1,11 @@
 node {
     stage('Build') {
         sh 'echo build'
+        GIT_COMMIT_EMAIL = sh (
+            script: 'git --no-pager show -s --format=\'%ae\'',
+            returnStdout: true
+        ).trim()
+        echo "Git committer email: ${GIT_COMMIT_EMAIL}"
     }
 
     stage('Test') {
@@ -16,6 +21,7 @@ node {
         echo("Ambiente Selezionato: "+ userInput['AMBIENTE'] + " -- rel: " + userInput['AMBIENTE']);
     }
 */
+   /* 
     def userInput;
     def  DEPLOY="", REL="", NEXT_REL=""
 
@@ -34,4 +40,5 @@ node {
         def testVar='foo'
         sh "echo $testVar"
     }
+*/
 }

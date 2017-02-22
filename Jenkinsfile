@@ -6,7 +6,7 @@ node {
     }
 
     stage('JIRA') {
-        def version = jiraGetVersion id: 10000
+        def version = jiraGetVersion id: 10000, site: "jira", failOnError: false
         echo version.data.toString()
     }
     

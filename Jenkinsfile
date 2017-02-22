@@ -5,6 +5,11 @@ node {
         sh 'echo build'
     }
 
+    stage('JIRA') {
+        def version = jiraGetVersion id: 10000
+        echo version.data.toString()
+    }
+    
     stage('Test') {
         sh 'echo test'  
         println("is userTriggered:" +userTriggered +" - is indexTriggered:" +  indexTriggered) 

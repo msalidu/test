@@ -1,0 +1,3 @@
+AfterInstall:
+  - location: tomcat-update.sh
+  timeout: 300 runas: root

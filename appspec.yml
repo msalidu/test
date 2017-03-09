@@ -1,7 +1,14 @@
-version: 0.0 
-os: linux 
+version: 0.0
+os: linux
 hooks:
   AfterInstall:
     - location: tomcat-update.sh
-      timeout: 300 
+      timeout: 180
       runas: root
+  ApplicationStart:
+    - location: tomcat-start.sh
+      timeout: 3600
+      runas: root
+  ValidateService:
+    - location: tomcat-test.sh
+      timeout: 3600

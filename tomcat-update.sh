@@ -1,8 +1,5 @@
 #!/bin/bash
 
-echo "fake exit..."
-exit 1
-
 MGNL_ENV="uat-magnolia"
 RELEASE_TMPFOLDER=/app/tomcat/webapps/tmp
 WEBAPP_FOLDER=/app/tomcat/webapps/magnolia

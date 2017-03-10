@@ -1,4 +1,4 @@
 #!/bin/bash
 
 echo "ValidateService"
-exit 0
+exit 1

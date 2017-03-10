@@ -10,5 +10,5 @@ hooks:
       timeout: 3600
       runas: root
   ValidateService:
-    - location: ValidateService.sh
+    - location: tomcat-test.sh
       timeout: 3600
